@@ -1,0 +1,6 @@
+[build]
+  publish = "dist"
+  command = "gridsome build"
+  
+[template.environment]
+  WORDPRESS_URL = "http://159.65.254.63"
