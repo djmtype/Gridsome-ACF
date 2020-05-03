@@ -5,7 +5,8 @@
 		<div v-html="$page.wordPressWriter.content" />
 
 		<div v-html="$page.wordPressWriter.acf.socialProfile" />
-
+const json = '$page.wordPressWriter.acf.socialProfile';
+const obj = JSON.parse(json);
 	</Layout>
 </template>
 
