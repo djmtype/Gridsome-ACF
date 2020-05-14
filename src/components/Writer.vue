@@ -3,7 +3,7 @@
     <h2 v-html="post.title" />
     <div v-html="post.content" />
 
-    <p v-html="post.acf.socialProfile"/>
+    <!-- <p v-html="post.acf.socialProfile"/> -->
 
 
     <g-link :to="post.path">

@@ -1,10 +1,33 @@
 <template>
 	<Layout>
 		<h1 v-html="$page.wordPressPost.title" />
-		<h2 v-html="'By ' + $page.wordPressPost.acf.writer" />
-		<pre><code>// Need Writer Name and Content</code></pre>
+		<h2 v-if="$page.wordPressPost.acf.writer"> 
+<a href="#writer">{{ $page.wordPressPost.acf.writer.title }}</a>
+</h2>
+
+
 		<img v-if="$page.wordPressPost.featuredMedia" :src="$page.wordPressPost.featuredMedia.sourceUrl" :width="$page.wordPressPost.featuredMedia.mediaDetails.width" :alt="$page.wordPressPost.featuredMedia.altText" />
 		<div v-html="$page.wordPressPost.content" />
+
+<template v-if="$page.wordPressPost.acf.writer">
+		<div id="writer">
+			<h2 v-html="$page.wordPressPost.acf.writer.title" />
+
+			<p v-html="$page.wordPressPost.acf.writer.content" />
+
+			
+
+<div v-for="(item, index) in $page.wordPressPost.acf.writer.acf.socialProfile" :key="index">
+		<dl :class="'profile-' + item.name.toLowerCase().trim()">
+		<dt>Name:</dt> <dd>{{ item.name }}</dd>
+		<dt>ID:</dt> <dd>{{ item.userId }}</dd>
+		</dl>
+	</div>
+				
+		</div>
+		<!-- /#writer -->
+</template>
+
 		<template v-if="$page.wordPressPost.categories.length">
 			<h4>Posted in</h4>
 			<ul class="list categories">
@@ -30,28 +53,42 @@
 	title
 	content
 	acf {
-	writer
+          writer {
+            id
+            title
+            content
+            acf {
+              socialProfile {
+                name
+                userId
+              }
+            }
+          }
+        }
+		featuredMedia {
+		sourceUrl
+		altText
+			mediaDetails {
+			width
+			}
+		}
+		categories {
+		id
+		title
+		path
+		}
+		tags {
+		id
+		title
+		path
+		}
 	}
-	featuredMedia {
-	sourceUrl
-	altText
-	mediaDetails {
-	width
 	}
-	}
-	categories {
-	id
-	title
-	path
-	}
-	tags {
-	id
-	title
-	path
-	}
-	}
-	}
+
 </page-query>
+
+
+
 
 <script>
 	export default {
@@ -64,6 +101,11 @@
 </script>
 
 <style>
+#writer {
+	border: 1px solid gold;
+	background-color: ivory;
+padding: 2rem;
+}
 	ul.list {
 		list-style: none;
 		padding: 0;

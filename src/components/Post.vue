@@ -1,7 +1,9 @@
 <template>
   <div>
     <h2 v-html="post.title" />
-    <h3 v-html="'By ' + post.acf.writer" />
+    
+    <h3 v-if="post.acf.writer" v-html="'By ' + post.acf.writer.title" />
+   <h3 v-else>From the Editor</h3>
     <div v-html="post.excerpt" />
     <g-link :to="post.path">
       Read More

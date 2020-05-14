@@ -4,9 +4,15 @@
 		<img v-if="$page.wordPressWriter.featuredMedia" :src="$page.wordPressWriter.featuredMedia.sourceUrl" :width="$page.wordPressWriter.featuredMedia.mediaDetails.width" :alt="$page.wordPressWriter.featuredMedia.altText" />
 		<div v-html="$page.wordPressWriter.content" />
 
-		<div v-html="$page.wordPressWriter.acf.socialProfile" />
-const json = '$page.wordPressWriter.acf.socialProfile';
-const obj = JSON.parse(json);
+		<!-- <div v-html="$page.wordPressWriter.acf.socialProfile" /> -->
+
+<div v-for="(item, index) in $page.wordPressWriter.acf.socialProfile" :key="index">
+  <h4 :class="'profile-' + item.name.toLowerCase().trim()">
+		Name: {{ item.name }}<br>
+  ID: {{ item.userId }}</h4>
+</div>
+
+
 	</Layout>
 </template>
 
@@ -16,17 +22,17 @@ const obj = JSON.parse(json);
 	title
 	content
 	acf {
-	socialProfile {
-	name
-	userId
-	}
+		socialProfile {
+			name
+			userId
+		}
 	}
 	featuredMedia {
-	sourceUrl
-	altText
-	mediaDetails {
-	width
-	}
+		sourceUrl
+		altText
+		mediaDetails {
+			width
+		}
 	}
 
 	}

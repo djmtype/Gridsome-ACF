@@ -24,7 +24,11 @@ query Home ($page: Int) {
         path
         excerpt
         acf {
-          writer
+          writer {
+            id
+            title
+            content
+          }
         }
       }
     }
