@@ -26,6 +26,13 @@ query WordPressPostTag ($id: ID!, $page: Int) {
             title
             path
             excerpt
+            acf {
+              writer {
+                title
+                id
+                content
+              }
+            }
         	}
         }
       }

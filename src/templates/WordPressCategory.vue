@@ -26,6 +26,13 @@ query WordPressCategory ($id: ID!, $page: Int) {
             title
             path
             excerpt
+            acf {
+              writer {
+                id
+                title
+                content
+              }
+            }
         	}
         }
       }
